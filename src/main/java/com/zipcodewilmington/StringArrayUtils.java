@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +27,8 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        Integer lastElementPosition = array.length - 1;
+        return array[lastElementPosition];
     }
 
     /**
@@ -33,7 +36,8 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        Integer secondLastElementPosition = array.length - 2;
+        return array[secondLastElementPosition];
     }
 
     /**
@@ -42,7 +46,16 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+        Boolean result = false;
+        for (int i = 0; i < array.length; i++) {
+            if (value == array[i]) {
+                result = true;
+                break;
+            } else {
+                result = false;
+            }
+        }
+        return result;
     }
 
     /**
@@ -50,7 +63,14 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        String[] reverseArray = new String[array.length];
+        Integer counter = 0;
+
+        for (int i = array.length - 1; i >= 0; i--) {
+            reverseArray[counter] = array[i];
+            counter++;
+        }
+        return reverseArray;
     }
 
     /**
@@ -58,7 +78,14 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        String[] reverseArray = new String[array.length];
+        Integer counter = 0;
+
+        for (int i = array.length - 1; i >= 0; i--) {
+            reverseArray[counter] = array[i];
+            counter++;
+        }
+        return Arrays.toString(reverseArray).equals(Arrays.toString(array));
     }
 
     /**
@@ -66,7 +93,35 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+
+        String ofArray = "";
+        Integer index;
+
+        for (int i = 0; i < array.length; i++){
+            ofArray += array[i];
+        }
+        ofArray = ofArray.replace(" ", "");
+        ofArray = ofArray.toLowerCase();
+        System.out.println(ofArray);
+        Boolean[] alphabet = new Boolean [26];
+
+        if (ofArray.length() < alphabet.length) {
+            return false;
+        }
+
+        for (int j = 0; j < ofArray.length(); j++) {
+            if (ofArray.charAt(j) >= 'a' && ofArray.charAt(j) <= 'z') {
+                index = ofArray.charAt(j) - 'a';
+                alphabet[index] = true;
+            }
+        }
+        for (int k = 0; k < alphabet.length; k++) {
+            if (alphabet[k] != true) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
     /**
@@ -75,7 +130,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        Integer counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
     /**
@@ -84,7 +145,23 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        String[] newArray = new String[array.length];
+        Integer counter = 0;
+        Integer counter2 = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (!array[i].equals(valueToRemove)) {
+                newArray[counter] = array[i];
+                counter++;
+            } else {
+                counter2++;
+            }
+        }
+        String[] newArray2 = new String[newArray.length - counter2];
+        for (int i = 0; i < newArray2.length; i++) {
+            newArray2[i] = newArray[i];
+        }
+        
+        return newArray2;
     }
 
     /**

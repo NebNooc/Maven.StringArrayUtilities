@@ -14,7 +14,6 @@ public class IsPalindromicTest {
     }
 
 
-
     @Test
     public void testIsPalindromic2() {
         String[] array = {"Is this a palindrome?", "This is a palindrome", "Is this a palindrome?"};
@@ -29,6 +28,4 @@ public class IsPalindromicTest {
         boolean outcome = StringArrayUtils.isPalindromic(array);
         Assert.assertFalse(outcome);
     }
-
-
 }
